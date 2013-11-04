@@ -91,7 +91,7 @@ Position FindMin(Tree tree)
 {
     IS_NULL(tree, NULL);
 
-    while(tree->left)
+    while(NULL != tree->left)
     {
         tree = tree->left;
     }
@@ -102,7 +102,7 @@ Position FindMax(Tree tree)
 {
     IS_NULL(tree, NULL);
 
-    while(tree->right)
+    while(NULL != tree->right)
     {
         tree = tree->right;
     }
@@ -137,9 +137,11 @@ void MoveData(Position delPos)
         delPos->ele = delPos->left->ele;
         return MoveData(delPos->left);
     }
-
-    delPos->ele = delPos->right->ele;
-    return MoveData(delPos->right);
+    else
+    {
+        delPos->ele = delPos->right->ele;
+        return MoveData(delPos->right);
+    }
 }
 void Delete(ElementType ele, Tree tree)
 {
